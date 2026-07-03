@@ -1,6 +1,7 @@
 import { useRoute } from "wouter";
 import { useGetProvider, useListModels } from "@workspace/api-client-react";
 import { useLanguage } from "@/lib/LanguageContext";
+import { providerDescription } from "@/lib/contentI18n";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -11,7 +12,7 @@ import { format } from "date-fns";
 export default function ProviderDetailPage() {
   const [, params] = useRoute("/providers/:id");
   const id = Number(params?.id);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const { data: provider, isLoading, isError } = useGetProvider(id);
   const { data: models, isLoading: modelsLoading } = useListModels({ providerId: id });
@@ -62,7 +63,7 @@ export default function ProviderDetailPage() {
             </div>
             
             <p className="text-lg text-muted-foreground">
-              {provider.description || t.common.notAvailable}
+              {providerDescription(provider.slug, language, provider.description) || t.common.notAvailable}
             </p>
 
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground pt-2">

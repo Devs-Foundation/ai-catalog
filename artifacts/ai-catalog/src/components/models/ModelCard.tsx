@@ -7,6 +7,7 @@ import { AlertTriangle, Cpu, ExternalLink } from "lucide-react";
 import { useCompare } from "@/lib/CompareContext";
 import { useLanguage } from "@/lib/LanguageContext";
 import { uiExtra } from "@/lib/translations";
+import { modelDescription } from "@/lib/contentI18n";
 
 export function ModelCard({ model }: { model: ModelWithProvider }) {
   const { isSelected, toggle, canAddMore } = useCompare();
@@ -47,7 +48,7 @@ export function ModelCard({ model }: { model: ModelWithProvider }) {
       
       <CardContent className="flex-1 pb-4">
         <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-          {model.description || pt.common.notAvailable}
+          {modelDescription(model.slug, language, model.description) || pt.common.notAvailable}
         </p>
         
         <div className="grid grid-cols-2 gap-y-3 gap-x-2 text-sm">

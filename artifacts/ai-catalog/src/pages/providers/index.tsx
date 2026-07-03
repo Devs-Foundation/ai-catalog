@@ -1,11 +1,12 @@
 import { useListProviders } from "@workspace/api-client-react";
 import { useLanguage } from "@/lib/LanguageContext";
+import { providerDescription } from "@/lib/contentI18n";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 
 export default function ProvidersPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { data: providers, isLoading, isError } = useListProviders();
 
   if (isLoading) return <div>{t.common.loading}</div>;
@@ -30,7 +31,7 @@ export default function ProvidersPage() {
                   )}
                 </div>
                 <CardDescription className="line-clamp-2">
-                  {provider.description || t.common.notAvailable}
+                  {providerDescription(provider.slug, language, provider.description) || t.common.notAvailable}
                 </CardDescription>
               </CardHeader>
               <CardContent>

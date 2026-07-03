@@ -2,6 +2,7 @@ import { useRoute } from "wouter";
 import { useGetModel } from "@workspace/api-client-react";
 import { useLanguage } from "@/lib/LanguageContext";
 import { specialtyLabel } from "@/lib/translations";
+import { modelDescription } from "@/lib/contentI18n";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertTriangle, ExternalLink, Box, Cpu, Info, Check, X } from "lucide-react";
@@ -65,7 +66,7 @@ export default function ModelDetailPage() {
         </div>
         
         <p className="text-xl text-muted-foreground leading-relaxed">
-          {model.description || t.common.notAvailable}
+          {modelDescription(model.slug, language, model.description) || t.common.notAvailable}
         </p>
 
         <div className="flex flex-wrap gap-2 pt-2">
