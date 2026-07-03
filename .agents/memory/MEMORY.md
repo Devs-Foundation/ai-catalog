@@ -1,0 +1,2 @@
+- [Drizzle push column type changes](drizzle-column-type-change.md) — changing a column's Postgres type (e.g. text→doublePrecision) fails `drizzle-kit push` on non-empty tables; needs a manual cast or table drop in dev.
+- [i18n via LanguageContext](i18n-language-context.md) — ai-catalog uses a Translations-typed record per language + useLanguage() hook; new UI copy must add a key to the shared type, not a hardcoded string.

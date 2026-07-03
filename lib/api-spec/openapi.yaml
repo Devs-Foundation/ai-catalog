@@ -1,0 +1,567 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification for the AI Providers & Models Catalog
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: providers
+    description: AI providers
+  - name: models
+    description: AI models
+  - name: meta
+    description: Aggregate/summary endpoints
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /providers:
+    get:
+      operationId: listProviders
+      tags: [providers]
+      summary: List providers
+      parameters:
+        - name: search
+          in: query
+          schema: { type: string }
+        - name: isOpenSource
+          in: query
+          schema: { type: boolean }
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [name_asc, name_desc, recently_updated, model_count_desc]
+      responses:
+        "200":
+          description: List of providers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Provider"
+    post:
+      operationId: createProvider
+      tags: [providers]
+      summary: Create a provider (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProviderInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Provider"
+
+  /providers/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    get:
+      operationId: getProvider
+      tags: [providers]
+      summary: Get a provider with its models
+      responses:
+        "200":
+          description: Provider detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProviderDetail"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateProvider
+      tags: [providers]
+      summary: Update a provider (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProviderUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Provider"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteProvider
+      tags: [providers]
+      summary: Delete a provider (admin)
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+
+  /providers/{id}/verify:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    patch:
+      operationId: verifyProvider
+      tags: [providers]
+      summary: Mark a provider as manually validated (admin)
+      responses:
+        "200":
+          description: Verified
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Provider"
+        "404":
+          description: Not found
+
+  /models:
+    get:
+      operationId: listModels
+      tags: [models]
+      summary: List models with filters
+      parameters:
+        - name: search
+          in: query
+          schema: { type: string }
+        - name: providerId
+          in: query
+          schema: { type: integer }
+        - name: pricingType
+          in: query
+          description: Comma-separated list, e.g. free,paid,freemium,open_source
+          schema: { type: string }
+        - name: modality
+          in: query
+          description: Comma-separated list of modalities
+          schema: { type: string }
+        - name: specialty
+          in: query
+          schema: { type: string }
+        - name: isOpenSource
+          in: query
+          schema: { type: boolean }
+        - name: apiAvailable
+          in: query
+          schema: { type: boolean }
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum:
+              [
+                name_asc,
+                price_asc,
+                price_desc,
+                context_desc,
+                recently_updated,
+              ]
+      responses:
+        "200":
+          description: List of models
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ModelWithProvider"
+    post:
+      operationId: createModel
+      tags: [models]
+      summary: Create a model (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+
+  /models/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    get:
+      operationId: getModel
+      tags: [models]
+      summary: Get a model
+      responses:
+        "200":
+          description: Model detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ModelWithProvider"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateModel
+      tags: [models]
+      summary: Update a model (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ModelUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+        "404":
+          description: Not found
+    delete:
+      operationId: deleteModel
+      tags: [models]
+      summary: Delete a model (admin)
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+
+  /models/{id}/verify:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema: { type: integer }
+    patch:
+      operationId: verifyModel
+      tags: [models]
+      summary: Mark a model as manually validated (admin)
+      responses:
+        "200":
+          description: Verified
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Model"
+        "404":
+          description: Not found
+
+  /stats/summary:
+    get:
+      operationId: getStatsSummary
+      tags: [meta]
+      summary: Aggregate catalog statistics for the dashboard
+      responses:
+        "200":
+          description: Summary stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatsSummary"
+
+  /meta/specialties:
+    get:
+      operationId: listSpecialties
+      tags: [meta]
+      summary: Distinct specialties used across all models
+      responses:
+        "200":
+          description: List of specialties
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { type: string }
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    PricingType:
+      type: string
+      enum: [free, paid, freemium, open_source]
+
+    Modality:
+      type: string
+      enum: [text, image, audio, video, code, agents]
+
+    Provider:
+      type: object
+      required:
+        - id
+        - slug
+        - name
+        - isOpenSource
+        - modelCount
+        - lastVerifiedAt
+        - createdAt
+      properties:
+        id: { type: integer }
+        slug: { type: string }
+        name: { type: string }
+        description: { type: ["string", "null"] }
+        websiteUrl: { type: ["string", "null"] }
+        pricingUrl: { type: ["string", "null"] }
+        docsUrl: { type: ["string", "null"] }
+        logoUrl: { type: ["string", "null"] }
+        isOpenSource: { type: boolean }
+        headquarters: { type: ["string", "null"] }
+        modelCount: { type: integer }
+        lastVerifiedAt: { type: string, format: date-time }
+        verifiedByAdmin: { type: boolean }
+        createdAt: { type: string, format: date-time }
+
+    ProviderDetail:
+      allOf:
+        - $ref: "#/components/schemas/Provider"
+        - type: object
+          required: [models]
+          properties:
+            models:
+              type: array
+              items:
+                $ref: "#/components/schemas/Model"
+
+    ProviderInput:
+      type: object
+      required: [slug, name, isOpenSource]
+      properties:
+        slug: { type: string, minLength: 1 }
+        name: { type: string, minLength: 1 }
+        description: { type: string }
+        websiteUrl: { type: string }
+        pricingUrl: { type: string }
+        docsUrl: { type: string }
+        logoUrl: { type: string }
+        isOpenSource: { type: boolean }
+        headquarters: { type: string }
+        lastVerifiedAt: { type: string, format: date-time }
+
+    ProviderUpdate:
+      type: object
+      properties:
+        slug: { type: string, minLength: 1 }
+        name: { type: string, minLength: 1 }
+        description: { type: string }
+        websiteUrl: { type: string }
+        pricingUrl: { type: string }
+        docsUrl: { type: string }
+        logoUrl: { type: string }
+        isOpenSource: { type: boolean }
+        headquarters: { type: string }
+        lastVerifiedAt: { type: string, format: date-time }
+
+    Model:
+      type: object
+      required:
+        - id
+        - providerId
+        - slug
+        - name
+        - pricingType
+        - modalitiesInput
+        - modalitiesOutput
+        - specialties
+        - apiAvailable
+        - lastUpdatedAt
+        - createdAt
+        - isPotentiallyOutdated
+      properties:
+        id: { type: integer }
+        providerId: { type: integer }
+        slug: { type: string }
+        name: { type: string }
+        description: { type: ["string", "null"] }
+        pricingType:
+          $ref: "#/components/schemas/PricingType"
+        priceInputPerMillionTokens: { type: ["number", "null"] }
+        priceOutputPerMillionTokens: { type: ["number", "null"] }
+        priceUnit: { type: ["string", "null"] }
+        priceNotes: { type: ["string", "null"] }
+        contextWindowTokens: { type: ["integer", "null"] }
+        maxOutputTokens: { type: ["integer", "null"] }
+        modalitiesInput:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modality"
+        modalitiesOutput:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modality"
+        specialties:
+          type: array
+          items: { type: string }
+        usageLimits: { type: ["string", "null"] }
+        apiAvailable: { type: boolean }
+        officialLink: { type: ["string", "null"] }
+        releaseDate: { type: ["string", "null"] }
+        lastUpdatedAt: { type: string, format: date-time }
+        verifiedByAdmin: { type: boolean }
+        isPotentiallyOutdated: { type: boolean }
+        createdAt: { type: string, format: date-time }
+
+    ModelWithProvider:
+      allOf:
+        - $ref: "#/components/schemas/Model"
+        - type: object
+          required: [providerName, providerSlug, providerIsOpenSource]
+          properties:
+            providerName: { type: string }
+            providerSlug: { type: string }
+            providerIsOpenSource: { type: boolean }
+            providerLogoUrl: { type: ["string", "null"] }
+
+    ModelInput:
+      type: object
+      required:
+        - providerId
+        - slug
+        - name
+        - pricingType
+        - modalitiesInput
+        - modalitiesOutput
+        - apiAvailable
+      properties:
+        providerId: { type: integer }
+        slug: { type: string, minLength: 1 }
+        name: { type: string, minLength: 1 }
+        description: { type: string }
+        pricingType:
+          $ref: "#/components/schemas/PricingType"
+        priceInputPerMillionTokens: { type: number }
+        priceOutputPerMillionTokens: { type: number }
+        priceUnit: { type: string }
+        priceNotes: { type: string }
+        contextWindowTokens: { type: integer }
+        maxOutputTokens: { type: integer }
+        modalitiesInput:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modality"
+        modalitiesOutput:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modality"
+        specialties:
+          type: array
+          items: { type: string }
+        usageLimits: { type: string }
+        apiAvailable: { type: boolean }
+        officialLink: { type: string }
+        releaseDate: { type: string }
+        lastUpdatedAt: { type: string, format: date-time }
+
+    ModelUpdate:
+      type: object
+      properties:
+        providerId: { type: integer }
+        slug: { type: string, minLength: 1 }
+        name: { type: string, minLength: 1 }
+        description: { type: string }
+        pricingType:
+          $ref: "#/components/schemas/PricingType"
+        priceInputPerMillionTokens: { type: number }
+        priceOutputPerMillionTokens: { type: number }
+        priceUnit: { type: string }
+        priceNotes: { type: string }
+        contextWindowTokens: { type: integer }
+        maxOutputTokens: { type: integer }
+        modalitiesInput:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modality"
+        modalitiesOutput:
+          type: array
+          items:
+            $ref: "#/components/schemas/Modality"
+        specialties:
+          type: array
+          items: { type: string }
+        usageLimits: { type: string }
+        apiAvailable: { type: boolean }
+        officialLink: { type: string }
+        releaseDate: { type: string }
+        lastUpdatedAt: { type: string, format: date-time }
+
+    PricingBreakdown:
+      type: object
+      required: [pricingType, count]
+      properties:
+        pricingType:
+          $ref: "#/components/schemas/PricingType"
+        count: { type: integer }
+
+    ModalityBreakdown:
+      type: object
+      required: [modality, count]
+      properties:
+        modality:
+          $ref: "#/components/schemas/Modality"
+        count: { type: integer }
+
+    StatsSummary:
+      type: object
+      required:
+        - totalProviders
+        - totalModels
+        - openSourceProviders
+        - pricingBreakdown
+        - modalityBreakdown
+        - recentlyUpdatedModels
+        - potentiallyOutdatedCount
+      properties:
+        totalProviders: { type: integer }
+        totalModels: { type: integer }
+        openSourceProviders: { type: integer }
+        pricingBreakdown:
+          type: array
+          items:
+            $ref: "#/components/schemas/PricingBreakdown"
+        modalityBreakdown:
+          type: array
+          items:
+            $ref: "#/components/schemas/ModalityBreakdown"
+        recentlyUpdatedModels:
+          type: array
+          items:
+            $ref: "#/components/schemas/ModelWithProvider"
+        potentiallyOutdatedCount: { type: integer }

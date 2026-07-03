@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Catálogo de IA"
+version = "1.0.0"
+id = "artifacts/ai-catalog"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23214
+
+[services.development]
+run = "pnpm --filter @workspace/ai-catalog run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ai-catalog", "run", "build" ]
+publicDir = "artifacts/ai-catalog/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23214"
+BASE_PATH = "/"
