@@ -27,7 +27,7 @@ It ships with a **Dashboard**, a **Providers** directory, per-**Model** detail p
 
 ## Features
 
-- 📊 **Compare paid & free** models across ~20 providers and ~30+ models
+- 📊 **Compare paid & free** models across **24 providers and 200+ models**
 - 💸 **Real pricing** — USD per million tokens, or per-unit (per-image / per-second / subscription) with clear notes
 - 🆓 **Open vs. proprietary** — open-weight and free-tier models flagged, not buried
 - 🧩 **Capabilities & specialties** — modalities and strengths as filterable tags
@@ -90,7 +90,7 @@ pnpm --filter @workspace/api-spec run codegen   # regenerate hooks + Zod from Op
 │   ├── ai-catalog/       # React + Vite frontend (Dashboard, Providers, Models, Admin)
 │   └── mockup-sandbox/   # UI mockups / sandbox
 └── scripts/
-    └── src/seed-catalog.ts   # seed data for ~20 providers and ~30+ models
+    └── src/seed-catalog.ts   # seed data for 24 providers and 200+ models
 ```
 
 **Where the important bits live:**
