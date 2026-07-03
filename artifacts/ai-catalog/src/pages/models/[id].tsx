@@ -1,6 +1,7 @@
 import { useRoute } from "wouter";
 import { useGetModel } from "@workspace/api-client-react";
 import { useLanguage } from "@/lib/LanguageContext";
+import { specialtyLabel } from "@/lib/translations";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertTriangle, ExternalLink, Box, Cpu, Info, Check, X } from "lucide-react";
@@ -11,7 +12,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 export default function ModelDetailPage() {
   const [, params] = useRoute("/models/:id");
   const id = Number(params?.id);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const { data: model, isLoading, isError } = useGetModel(id);
 
@@ -173,7 +174,7 @@ export default function ModelDetailPage() {
                 <div className="flex flex-wrap gap-2">
                   {model.specialties.map((spec) => (
                     <Badge key={spec} variant="outline" className="bg-muted/30">
-                      {spec}
+                      {specialtyLabel(spec, language)}
                     </Badge>
                   ))}
                 </div>

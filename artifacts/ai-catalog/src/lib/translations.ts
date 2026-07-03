@@ -1027,4 +1027,41 @@ export const languageLabels: Record<LanguageCode, string> = {
   zh: "中文",
 };
 
-export const DEFAULT_LANGUAGE: LanguageCode = "pt";
+export const DEFAULT_LANGUAGE: LanguageCode = "en";
+
+// Localized labels for the controlled specialty vocabulary. The DB stores the
+// canonical PT-PT tag (also used as the filter key); these translate the DISPLAY.
+export const specialtyLabels: Record<LanguageCode, Record<string, string>> = {
+  pt: {
+    "agentes": "agentes", "arte": "arte", "atualidade": "atualidade", "baixa latência": "baixa latência", "baixo custo": "baixo custo", "citações": "citações", "clonagem de voz": "clonagem de voz", "código": "código", "contexto longo": "contexto longo", "conversação": "conversação", "dados em tempo real": "dados em tempo real", "edição de imagem": "edição de imagem", "edição de vídeo": "edição de vídeo", "empresarial": "empresarial", "geração de imagem": "geração de imagem", "geração de vídeo": "geração de vídeo", "instalação local": "instalação local", "matemática": "matemática", "multilingue": "multilingue", "otimização de custo": "otimização de custo", "pesquisa web": "pesquisa web", "raciocínio": "raciocínio", "rag": "rag", "reconhecimento de fala": "reconhecimento de fala", "síntese de voz": "síntese de voz", "transcrição": "transcrição", "uso geral": "uso geral", "visão": "visão",
+  },
+  en: {
+    "agentes": "agents", "arte": "art", "atualidade": "current events", "baixa latência": "low latency", "baixo custo": "low cost", "citações": "citations", "clonagem de voz": "voice cloning", "código": "code", "contexto longo": "long context", "conversação": "conversation", "dados em tempo real": "real-time data", "edição de imagem": "image editing", "edição de vídeo": "video editing", "empresarial": "enterprise", "geração de imagem": "image generation", "geração de vídeo": "video generation", "instalação local": "local install", "matemática": "mathematics", "multilingue": "multilingual", "otimização de custo": "cost optimization", "pesquisa web": "web search", "raciocínio": "reasoning", "rag": "rag", "reconhecimento de fala": "speech recognition", "síntese de voz": "speech synthesis", "transcrição": "transcription", "uso geral": "general purpose", "visão": "vision",
+  },
+  es: {
+    "agentes": "agentes", "arte": "arte", "atualidade": "actualidad", "baixa latência": "baja latencia", "baixo custo": "bajo coste", "citações": "citas", "clonagem de voz": "clonación de voz", "código": "código", "contexto longo": "contexto largo", "conversação": "conversación", "dados em tempo real": "datos en tiempo real", "edição de imagem": "edición de imagen", "edição de vídeo": "edición de vídeo", "empresarial": "empresarial", "geração de imagem": "generación de imagen", "geração de vídeo": "generación de vídeo", "instalação local": "instalación local", "matemática": "matemáticas", "multilingue": "multilingüe", "otimização de custo": "optimización de coste", "pesquisa web": "búsqueda web", "raciocínio": "razonamiento", "rag": "rag", "reconhecimento de fala": "reconocimiento de voz", "síntese de voz": "síntesis de voz", "transcrição": "transcripción", "uso geral": "uso general", "visão": "visión",
+  },
+  fr: {
+    "agentes": "agents", "arte": "art", "atualidade": "actualité", "baixa latência": "faible latence", "baixo custo": "faible coût", "citações": "citations", "clonagem de voz": "clonage vocal", "código": "code", "contexto longo": "contexte long", "conversação": "conversation", "dados em tempo real": "données en temps réel", "edição de imagem": "édition d'image", "edição de vídeo": "édition vidéo", "empresarial": "entreprise", "geração de imagem": "génération d'image", "geração de vídeo": "génération vidéo", "instalação local": "installation locale", "matemática": "mathématiques", "multilingue": "multilingue", "otimização de custo": "optimisation des coûts", "pesquisa web": "recherche web", "raciocínio": "raisonnement", "rag": "rag", "reconhecimento de fala": "reconnaissance vocale", "síntese de voz": "synthèse vocale", "transcrição": "transcription", "uso geral": "usage général", "visão": "vision",
+  },
+  de: {
+    "agentes": "Agenten", "arte": "Kunst", "atualidade": "Aktualität", "baixa latência": "niedrige Latenz", "baixo custo": "niedrige Kosten", "citações": "Zitate", "clonagem de voz": "Stimmklonung", "código": "Code", "contexto longo": "langer Kontext", "conversação": "Konversation", "dados em tempo real": "Echtzeitdaten", "edição de imagem": "Bildbearbeitung", "edição de vídeo": "Videobearbeitung", "empresarial": "Unternehmen", "geração de imagem": "Bildgenerierung", "geração de vídeo": "Videogenerierung", "instalação local": "lokale Installation", "matemática": "Mathematik", "multilingue": "mehrsprachig", "otimização de custo": "Kostenoptimierung", "pesquisa web": "Websuche", "raciocínio": "Schlussfolgern", "rag": "rag", "reconhecimento de fala": "Spracherkennung", "síntese de voz": "Sprachsynthese", "transcrição": "Transkription", "uso geral": "Allzweck", "visão": "Vision",
+  },
+  zh: {
+    "agentes": "智能体", "arte": "艺术", "atualidade": "时事", "baixa latência": "低延迟", "baixo custo": "低成本", "citações": "引用", "clonagem de voz": "语音克隆", "código": "代码", "contexto longo": "长上下文", "conversação": "对话", "dados em tempo real": "实时数据", "edição de imagem": "图像编辑", "edição de vídeo": "视频编辑", "empresarial": "企业", "geração de imagem": "图像生成", "geração de vídeo": "视频生成", "instalação local": "本地安装", "matemática": "数学", "multilingue": "多语言", "otimização de custo": "成本优化", "pesquisa web": "网络搜索", "raciocínio": "推理", "rag": "rag", "reconhecimento de fala": "语音识别", "síntese de voz": "语音合成", "transcrição": "转录", "uso geral": "通用", "visão": "视觉",
+  },
+};
+
+export function specialtyLabel(code: string, lang: LanguageCode): string {
+  return specialtyLabels[lang]?.[code] ?? code;
+}
+
+// Small UI strings that were previously hardcoded in components.
+export const uiExtra: Record<LanguageCode, { details: string; free: string }> = {
+  pt: { details: "Detalhes", free: "Grátis" },
+  en: { details: "Details", free: "Free" },
+  es: { details: "Detalles", free: "Gratis" },
+  fr: { details: "Détails", free: "Gratuit" },
+  de: { details: "Details", free: "Kostenlos" },
+  zh: { details: "详情", free: "免费" },
+};

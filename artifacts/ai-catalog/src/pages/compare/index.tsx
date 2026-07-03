@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { useGetModel } from "@workspace/api-client-react";
 import { useCompare } from "@/lib/CompareContext";
 import { useLanguage } from "@/lib/LanguageContext";
-import { Translations } from "@/lib/translations";
+import { Translations, specialtyLabel } from "@/lib/translations";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -17,6 +17,7 @@ function formatPrice(price?: number | null) {
 
 function ComparedModelColumn({ id, t }: { id: number; t: Translations }) {
   const { remove } = useCompare();
+  const { language } = useLanguage();
   const { data: model, isLoading, isError } = useGetModel(id);
 
   if (isLoading) {
@@ -80,7 +81,7 @@ function ComparedModelColumn({ id, t }: { id: number; t: Translations }) {
         <div className="flex flex-wrap gap-1">
           {model.specialties.map((spec) => (
             <Badge key={spec} variant="outline" className="text-[10px] bg-muted/30">
-              {spec}
+              {specialtyLabel(spec, language)}
             </Badge>
           ))}
         </div>

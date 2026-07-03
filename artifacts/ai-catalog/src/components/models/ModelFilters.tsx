@@ -3,6 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { useLanguage } from "@/lib/LanguageContext";
+import { specialtyLabel } from "@/lib/translations";
 import { Search } from "lucide-react";
 import { ListModelsParams } from "@workspace/api-client-react";
 import { Badge } from "@/components/ui/badge";
@@ -14,7 +15,7 @@ interface ModelFiltersProps {
 }
 
 export function ModelFilters({ filters, setFilters, specialties = [] }: ModelFiltersProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilters({ ...filters, search: e.target.value || undefined });
@@ -117,7 +118,7 @@ export function ModelFilters({ filters, setFilters, specialties = [] }: ModelFil
                 className="cursor-pointer"
                 onClick={() => setFilters({ ...filters, specialty: spec })}
               >
-                {spec}
+                {specialtyLabel(spec, language)}
               </Badge>
             ))}
           </div>

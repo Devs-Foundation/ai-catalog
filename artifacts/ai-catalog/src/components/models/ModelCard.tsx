@@ -6,14 +6,15 @@ import { Link } from "wouter";
 import { AlertTriangle, Cpu, ExternalLink } from "lucide-react";
 import { useCompare } from "@/lib/CompareContext";
 import { useLanguage } from "@/lib/LanguageContext";
+import { uiExtra } from "@/lib/translations";
 
 export function ModelCard({ model }: { model: ModelWithProvider }) {
   const { isSelected, toggle, canAddMore } = useCompare();
-  const { t: pt } = useLanguage();
+  const { t: pt, language } = useLanguage();
   const selected = isSelected(model.id);
 
   const formatPrice = (price?: number | null) => {
-    if (price === 0) return "Grátis";
+    if (price === 0) return uiExtra[language].free;
     if (!price) return "N/A";
     return `$${price.toFixed(2)}`;
   };
@@ -81,7 +82,7 @@ export function ModelCard({ model }: { model: ModelWithProvider }) {
 
       <CardFooter className="pt-0 border-t border-border/50 bg-secondary/10 flex justify-between items-center py-3">
         <Link href={`/models/${model.id}`} className="text-sm font-medium text-primary hover:underline inline-flex items-center">
-          Detalhes <ExternalLink className="w-3 h-3 ml-1" />
+          {uiExtra[language].details} <ExternalLink className="w-3 h-3 ml-1" />
         </Link>
         <div className="flex items-center gap-3">
           {model.apiAvailable && (
