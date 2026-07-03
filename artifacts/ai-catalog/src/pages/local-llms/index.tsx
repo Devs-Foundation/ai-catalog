@@ -1,11 +1,12 @@
 import { useLanguage } from "@/lib/LanguageContext";
 import { localLlmSoftware } from "@/lib/local-llm-software";
+import { localizedSoftware } from "@/lib/local-llm-software.i18n";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Cpu, Download, ExternalLink, Lightbulb } from "lucide-react";
 
 export default function LocalLlmsPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="space-y-8 pb-20 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -27,7 +28,9 @@ export default function LocalLlmsPage() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-        {localLlmSoftware.map((software) => (
+        {localLlmSoftware.map((software) => {
+          const loc = localizedSoftware(software, language);
+          return (
           <div
             key={software.id}
             className="flex flex-col rounded-xl border bg-card overflow-hidden"
@@ -36,10 +39,10 @@ export default function LocalLlmsPage() {
               <div className="flex items-start justify-between gap-2">
                 <h2 className="text-lg font-semibold">{software.name}</h2>
                 <Badge variant="outline" className="text-[10px] shrink-0">
-                  {software.license}
+                  {loc.license}
                 </Badge>
               </div>
-              <p className="text-sm text-muted-foreground">{software.description}</p>
+              <p className="text-sm text-muted-foreground">{loc.description}</p>
               <div className="flex flex-wrap gap-1">
                 {software.platforms.map((platform) => (
                   <Badge key={platform} variant="secondary" className="text-[10px]">
@@ -60,7 +63,7 @@ export default function LocalLlmsPage() {
                 {t.localLlms.modelsAvailable}
               </div>
               <ul className="space-y-1.5 text-sm">
-                {software.models.map((model) => (
+                {loc.models.map((model) => (
                   <li key={model} className="flex items-start gap-2">
                     <span className="mt-1.5 h-1 w-1 rounded-full bg-primary shrink-0" />
                     <span>{model}</span>
@@ -69,7 +72,8 @@ export default function LocalLlmsPage() {
               </ul>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
