@@ -6,6 +6,40 @@ import { logger } from "./lib/logger";
 
 const app: Express = express();
 
+// Behind the Caddy reverse proxy: trust the first proxy so req.ip reflects the
+// real client (from X-Forwarded-For) for rate limiting.
+app.set("trust proxy", 1);
+
+// Lightweight in-memory rate limiter (no external dependency): fixed window per
+// client IP. Protects the public read API from hammering / scraping abuse.
+const RATE_WINDOW_MS = 60_000;
+const RATE_MAX = 240; // requests per IP per minute
+const rateHits = new Map<string, { count: number; reset: number }>();
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, rec] of rateHits) {
+    if (now > rec.reset) rateHits.delete(ip);
+  }
+}, RATE_WINDOW_MS).unref();
+
+app.use((req, res, next) => {
+  const ip = req.ip || req.socket.remoteAddress || "unknown";
+  const now = Date.now();
+  let rec = rateHits.get(ip);
+  if (!rec || now > rec.reset) {
+    rec = { count: 0, reset: now + RATE_WINDOW_MS };
+    rateHits.set(ip, rec);
+  }
+  rec.count += 1;
+  if (rec.count > RATE_MAX) {
+    res.setHeader("Retry-After", String(Math.ceil((rec.reset - now) / 1000)));
+    res.status(429).json({ error: "Too many requests. Please slow down." });
+    return;
+  }
+  next();
+});
+
 app.use(
   pinoHttp({
     logger,

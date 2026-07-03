@@ -11,13 +11,26 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
+function detectBrowserLanguage(): LanguageCode {
+  if (typeof navigator === "undefined") return DEFAULT_LANGUAGE;
+  const candidates = [navigator.language, ...(navigator.languages || [])];
+  for (const tag of candidates) {
+    if (!tag) continue;
+    const code = tag.toLowerCase().split("-")[0];
+    if (code in translations) return code as LanguageCode;
+  }
+  return DEFAULT_LANGUAGE;
+}
+
 function readStoredLanguage(): LanguageCode {
   if (typeof window === "undefined") return DEFAULT_LANGUAGE;
   const stored = window.localStorage.getItem(STORAGE_KEY);
   if (stored && stored in translations) {
     return stored as LanguageCode;
   }
-  return DEFAULT_LANGUAGE;
+  // First visit (no saved preference): follow the visitor's browser language,
+  // falling back to the default. Once they pick a language it is stored and wins.
+  return detectBrowserLanguage();
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
