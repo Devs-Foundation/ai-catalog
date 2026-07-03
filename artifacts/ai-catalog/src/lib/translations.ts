@@ -1057,11 +1057,11 @@ export function specialtyLabel(code: string, lang: LanguageCode): string {
 }
 
 // Small UI strings that were previously hardcoded in components.
-export const uiExtra: Record<LanguageCode, { details: string; free: string }> = {
-  pt: { details: "Detalhes", free: "Grátis" },
-  en: { details: "Details", free: "Free" },
-  es: { details: "Detalles", free: "Gratis" },
-  fr: { details: "Détails", free: "Gratuit" },
-  de: { details: "Details", free: "Kostenlos" },
-  zh: { details: "详情", free: "免费" },
+export const uiExtra: Record<LanguageCode, { details: string; free: string; disclaimer: string }> = {
+  pt: { details: "Detalhes", free: "Grátis", disclaimer: "Apenas informativo — os dados podem mudar; confirme junto do fornecedor. As marcas pertencem aos respetivos donos." },
+  en: { details: "Details", free: "Free", disclaimer: "For information only — data may change; verify with the provider. Trademarks belong to their respective owners." },
+  es: { details: "Detalles", free: "Gratis", disclaimer: "Solo informativo — los datos pueden cambiar; verifique con el proveedor. Las marcas pertenecen a sus respectivos dueños." },
+  fr: { details: "Détails", free: "Gratuit", disclaimer: "À titre informatif — les données peuvent changer ; vérifiez auprès du fournisseur. Les marques appartiennent à leurs propriétaires respectifs." },
+  de: { details: "Details", free: "Kostenlos", disclaimer: "Nur zur Information — Daten können sich ändern; beim Anbieter prüfen. Marken gehören ihren jeweiligen Eigentümern." },
+  zh: { details: "详情", free: "免费", disclaimer: "仅供参考——数据可能变动，请向提供商核实。商标归各自所有者所有。" },
 };
