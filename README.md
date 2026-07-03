@@ -6,7 +6,9 @@
 </p>
 
 <p align="center">
-  <b>🔗 Live:</b> <a href="https://catalog.devs.foundation"><b>catalog.devs.foundation</b></a>
+  <a href="https://catalog.devs.foundation">
+    <img src="https://img.shields.io/badge/%F0%9F%8C%90%20Open%20Live%20Site-catalog.devs.foundation-6D2AFF?style=for-the-badge&labelColor=1a1a2e" alt="Open the live site"/>
+  </a>
 </p>
 
 <p align="center">
