@@ -1,8 +1,9 @@
-<h1 align="center">🧠 Catálogo de IA</h1>
+> 🌐 **English** · [Português](README.pt.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [中文](README.zh.md)
+
+<h1 align="center">🧠 AI Catalog</h1>
 
 <p align="center">
-  <b>The AI catalog</b> — compare <b>paid &amp; free</b> AI models across every provider,<br/>
-  with prices, licenses, capabilities and specialties, in one place.
+  <b>The AI catalog</b> — search and compare <b>paid, free &amp; local</b> AI models across every provider, in one place.
 </p>
 
 <p align="center">
@@ -12,50 +13,40 @@
 </p>
 
 <p align="center">
-  <i>Built by</i> <b>Dev's Foundation</b> — <i>one brain, many minds.</i><br/>
-  <a href="https://devs.foundation">devs.foundation</a> ·
-  <a href="https://github.com/Devs-Foundation">GitHub</a> ·
-  <a href="https://x.com/DevsFoundation">X</a>
-</p>
-
-<p align="center">
-  <img src="docs/screenshots/catalog-home.png" alt="Catálogo de IA — dashboard with 201 models across 24 providers" width="880"/>
-</p>
-
-<p align="center">
-  <img src="docs/screenshots/catalog-models.png" alt="Catálogo de IA — model cards with pricing, context window and modalities" width="880"/>
+  <img src="docs/screenshots/catalog-home.png" alt="AI Catalog — dashboard with 201 models across 24 providers" width="880"/>
 </p>
 
 ---
 
-## What it is
+## Why we built it
 
-**Catálogo de IA** is a site that catalogs and compares AI **providers** and **models** — all of them, paid and free — in one place. It answers the questions builders actually ask:
+Every time we needed to choose a model, we ended up going in circles: prices on one page, licenses on another, capabilities scattered across blog posts, and the free or run-it-yourself options buried somewhere else entirely. Comparing a paid API against a free tier against a model you can run on your own machine meant a dozen open tabs and a lot of guesswork.
 
-- Which models exist, from which provider, and **what are they good at**?
-- **How much do they cost** — and which ones are **free / open-weight**?
-- What's the **license**, the **context window**, the **modalities**?
-- Which model fits *my* use case — and how does it compare, side by side?
+So we built this **to make our own lives easier** — one place to search and compare **paid, free, and local** AI models, with the facts that actually matter sitting side by side.
 
-It offers a **Dashboard**, a **Providers** directory, per-**Model** detail pages, an **LLMs** view, and side-by-side **comparison**. Content is written in **European Portuguese (PT-PT)**, structured for future multilingual support.
+## What it does
 
-## Features
+- 🔎 **Search &amp; filter** across **24 providers and 200+ models**
+- 💸 **Paid, free &amp; open-weight** — clearly flagged, never buried
+- 📊 **The facts that matter** — real pricing, context window, modalities and specialties
+- ⚖️ **Side-by-side comparison** — put candidates head to head
+- 💻 **Local LLMs** — a dedicated section with the tools to run models on your **own computer**
+- 🌍 **Six languages** — English, Português, Español, Français, Deutsch, 中文
 
-- 📊 **Compare paid &amp; free** models across **24 providers and 200+ models**
-- 💸 **Real pricing** — per million tokens, or per-unit (per-image / per-second / subscription) with clear notes
-- 🆓 **Open vs. proprietary** — open-weight and free-tier models flagged, not buried
-- 🧩 **Capabilities &amp; specialties** — modalities and strengths as filterable tags
-- 🔎 **Filter, search, and compare** — find the right model, then put candidates head to head
-- 🕒 **Freshness signals** — data older than 120 days is flagged, so what you read stays current
+## Use it
+
+👉 **[catalog.devs.foundation](https://catalog.devs.foundation)** — it's live, free, and needs no sign-up.
+
+<p align="center">
+  <img src="docs/screenshots/catalog-models.png" alt="AI Catalog — model cards with pricing, context window and modalities" width="880"/>
+</p>
 
 ## About Dev's Foundation
 
-**Dev's Foundation** is the first system where many AI models — across many devices — share **one persistent, git-synced brain** and decide by **consensus**. Infinite, shared memory. Self-hosted, private, end-to-end. **One learns, all know.**
-
-This catalog is part of that mission: making the fast-moving world of AI models **legible** — what's out there, what it costs, what's free, and what it's good for.
+**Dev's Foundation** is the first system where many AI models — across many devices — share **one persistent, git-synced brain** and decide by **consensus**. This catalog is part of that mission: making the fast-moving world of AI models **legible** — what's out there, what it costs, what's free, and what you can run yourself.
 
 > **N models. N devices. One brain.**
 
-<p align="center">
-  <sub>© Dev's Foundation · <a href="https://devs.foundation">devs.foundation</a></sub>
-</p>
+---
+
+Built by the **Dev's Foundation** team · [devs.foundation](https://devs.foundation)
