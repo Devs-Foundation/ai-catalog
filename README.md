@@ -16,6 +16,14 @@
   <a href="https://x.com/DevsFoundation">X</a>
 </p>
 
+<p align="center">
+  <img src="docs/screenshots/catalog-home.png" alt="Catálogo de IA — dashboard with 201 models across 24 providers" width="880"/>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/catalog-models.png" alt="Catálogo de IA — model cards with pricing, context window and modalities" width="880"/>
+</p>
+
 ---
 
 ## What it is
