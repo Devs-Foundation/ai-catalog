@@ -6,6 +6,10 @@
 </p>
 
 <p align="center">
+  <b>🔗 Live:</b> <a href="https://catalog.devs.foundation"><b>catalog.devs.foundation</b></a>
+</p>
+
+<p align="center">
   <i>Built by</i> <b>Dev's Foundation</b> — <i>one brain, many minds.</i><br/>
   <a href="https://devs.foundation">devs.foundation</a> ·
   <a href="https://github.com/Devs-Foundation">GitHub</a> ·
