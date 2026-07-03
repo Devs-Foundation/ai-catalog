@@ -1,7 +1,7 @@
 <h1 align="center">🧠 Catálogo de IA</h1>
 
 <p align="center">
-  <b>The open AI catalog</b> — compare <b>paid & free</b> AI models across every provider,<br/>
+  <b>The catalog of AI</b> — compare <b>paid & free</b> AI models across every provider,<br/>
   with prices, licenses, capabilities and specialties, in one place.
 </p>
 
