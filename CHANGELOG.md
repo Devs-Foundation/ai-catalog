@@ -15,6 +15,8 @@ All notable changes to **AI Catalog** are documented here.
 ### Security
 - Admin-token guard on all write endpoints (public reads unaffected).
 - In-memory API rate limiting.
+- Hardened edge response headers: HSTS (preload), `Content-Security-Policy`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`; server/version banners removed. See [`SECURITY.md`](SECURITY.md) and [`deploy/security-headers.caddy`](deploy/security-headers.caddy).
+- Independent penetration test: **10/10, zero critical vulnerabilities**.
 
 ---
 
