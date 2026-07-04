@@ -299,6 +299,18 @@ const providers: ProviderSeed[] = [
     isOpenSource: true,
     headquarters: "Palo Alto, EUA",
   },
+  {
+    slug: "ai21",
+    name: "AI21 Labs",
+    description:
+      "Empresa israelita de IA, criadora da família de modelos Jamba (arquitetura híbrida SSM-Transformer) focada em contexto longo e uso empresarial.",
+    websiteUrl: "https://www.ai21.com",
+    pricingUrl: "https://www.ai21.com/pricing",
+    docsUrl: "https://docs.ai21.com",
+    logoUrl: null,
+    isOpenSource: true,
+    headquarters: "Telavive, Israel",
+  },
 ];
 
 const models: ModelSeed[] = [
@@ -3799,6 +3811,42 @@ const models: ModelSeed[] = [
     apiAvailable: true,
     officialLink: "https://qwenlm.github.io/blog/qwen-image",
     releaseDate: "2025-08-04",
+  },
+  {
+    providerSlug: "ai21",
+    slug: "jamba-large-1.7",
+    name: "Jamba Large 1.7",
+    description:
+      "Modelo maior da família Jamba da AI21, com arquitetura híbrida SSM-Transformer otimizada para contexto longo e uso empresarial.",
+    pricingType: "paid",
+    priceInputPerMillionTokens: 2,
+    priceOutputPerMillionTokens: 8,
+    priceUnit: "por milhão de tokens",
+    contextWindowTokens: 256000,
+    modalitiesInput: ["text"],
+    modalitiesOutput: ["text"],
+    specialties: ["empresarial", "rag", "agentes"],
+    apiAvailable: true,
+    officialLink: "https://docs.ai21.com/docs/jamba-foundation-models",
+    releaseDate: "2025-07-01",
+  },
+  {
+    providerSlug: "ai21",
+    slug: "jamba-mini-2",
+    name: "Jamba Mini 2",
+    description:
+      "Modelo compacto e eficiente da família Jamba da AI21, com arquitetura híbrida SSM-Transformer e contexto longo, para uso empresarial de baixo custo.",
+    pricingType: "paid",
+    priceInputPerMillionTokens: 0.2,
+    priceOutputPerMillionTokens: 0.4,
+    priceUnit: "por milhão de tokens",
+    contextWindowTokens: 256000,
+    modalitiesInput: ["text"],
+    modalitiesOutput: ["text"],
+    specialties: ["empresarial", "rag"],
+    apiAvailable: true,
+    officialLink: "https://docs.ai21.com/docs/jamba-foundation-models",
+    releaseDate: "2026-01-01",
   },
 ];
 
