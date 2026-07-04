@@ -2,6 +2,13 @@ import { LanguageCode } from "./translations";
 
 // Auto-generated: per-language descriptions keyed by slug (en/es/fr/de/zh).
 export const providerDescriptions: Record<string, Partial<Record<LanguageCode, string>>> = {
+"ai21": {
+"de": "Israelisches KI-Unternehmen, Schöpfer der Jamba-Modellfamilie (hybride SSM-Transformer-Architektur), mit Fokus auf langen Kontext und Unternehmenseinsatz.",
+"en": "Israeli AI company, creator of the Jamba model family (hybrid SSM-Transformer architecture), focused on long context and enterprise use.",
+"es": "Empresa israelí de IA, creadora de la familia de modelos Jamba (arquitectura híbrida SSM-Transformer), centrada en el contexto largo y el uso empresarial.",
+"fr": "Entreprise israélienne d'IA, créatrice de la famille de modèles Jamba (architecture hybride SSM-Transformer), axée sur le contexte long et l'usage professionnel.",
+"zh": "以色列人工智能公司，Jamba 系列模型（混合 SSM-Transformer 架构）的开发者，专注于长上下文和企业应用。"
+},
 "alibaba": {
 "de": "Cloud- und KI-Sparte von Alibaba, Schöpferin der Qwen-Modellfamilie, verfügbar mit offenen Gewichten und kostenpflichtiger API.",
 "en": "Alibaba's cloud and AI division, creator of the Qwen model family, available in open weights and paid API.",

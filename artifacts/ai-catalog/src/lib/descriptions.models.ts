@@ -2,6 +2,20 @@ import { LanguageCode } from "./translations";
 
 // Auto-generated: per-language descriptions keyed by slug (en/es/fr/de/zh).
 export const modelDescriptions: Record<string, Partial<Record<LanguageCode, string>>> = {
+"jamba-large-1.7": {
+"de": "Größeres Modell der Jamba-Familie von AI21, mit hybrider SSM-Transformer-Architektur, optimiert für langen Kontext und Unternehmenseinsatz.",
+"en": "Larger model in AI21's Jamba family, with a hybrid SSM-Transformer architecture optimized for long context and enterprise use.",
+"es": "Modelo más grande de la familia Jamba de AI21, con una arquitectura híbrida SSM-Transformer optimizada para el contexto largo y el uso empresarial.",
+"fr": "Modèle le plus grand de la famille Jamba d'AI21, doté d'une architecture hybride SSM-Transformer optimisée pour le contexte long et l'usage professionnel.",
+"zh": "AI21 Jamba 系列中的较大模型，采用混合 SSM-Transformer 架构，针对长上下文和企业应用进行了优化。"
+},
+"jamba-mini-2": {
+"de": "Kompaktes, effizientes Modell der Jamba-Familie von AI21, mit hybrider SSM-Transformer-Architektur und langem Kontext, für kostengünstigen Unternehmenseinsatz.",
+"en": "Compact, efficient model in AI21's Jamba family, with a hybrid SSM-Transformer architecture and long context, for low-cost enterprise use.",
+"es": "Modelo compacto y eficiente de la familia Jamba de AI21, con arquitectura híbrida SSM-Transformer y contexto largo, para uso empresarial de bajo coste.",
+"fr": "Modèle compact et efficace de la famille Jamba d'AI21, doté d'une architecture hybride SSM-Transformer et d'un contexte long, pour un usage professionnel à faible coût.",
+"zh": "AI21 Jamba 系列中紧凑高效的模型，采用混合 SSM-Transformer 架构并支持长上下文，适用于低成本的企业应用。"
+},
 "act-two": {
 "de": "Charakter-Performance-Modell von Runway, das Mimik und Bewegung auf generiertes Video überträgt.",
 "en": "Character performance model from Runway that transfers expressions and movement onto generated video.",
